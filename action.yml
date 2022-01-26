@@ -30,8 +30,8 @@ runs:
     uses: shallwefootball/s3-upload-action@master
     id: S3
     with:
-      aws_key_id: ${{ secrets.AWS_KEY_ID }}
-      aws_secret_access_key: ${{ secrets.AWS_KEY}}
-      aws_bucket: ${{ secrets.AWS_BUCKET }}
+      aws_key_id: ${{ inputs.aws_key_id }}
+      aws_secret_access_key: ${{ inputs.aws_key}}
+      aws_bucket: ${{ inputs.aws_bucket }}
       source_dir: ${{inputs.folder}}
       destination_dir: ${{ github.event.repository.name }}/${{inputs.folder}}
