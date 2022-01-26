@@ -1,5 +1,5 @@
 # zipToS3
-
+Zip a NODE/NEXT project and publish a zip file to S3
 inputs:
   folder:  # folder name
     description: 'Folder Name'
