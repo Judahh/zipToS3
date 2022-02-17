@@ -14,16 +14,31 @@ inputs:
   aws_bucket:
     description: 'AWS Bucket'
     required: true
+  files:
+    description: 'Files to zip'
+    required: true
+    default: '.next/ next/ dist/ public/ node_modules/ package.json'
+  addTests:
+    description: 'Add tests?'
+    required: true
+    default: 'false'
+  tests:
+    description: 'Tests to zip'
+    required: true
+    default: 'tests/ test/ *test.* *config.*'
 runs:
-  using: "composite"
+  using: 'composite'
   steps:
   - name: GET VERSION
     id: package-version
     uses: martinbeentjes/npm-get-version-action@master
+  - name: 'Set Tests:'
+    run: echo "TESTS=$(${{ inputs.addTests == 'true' }} && echo ${{ inputs.tests }} || echo '')" >> $GITHUB_ENV
+    shell: bash
   - name: ZIP
     uses: vimtor/action-zip@master
     with:
-      files: ".next/ next/ dist/ public/ node_modules/ package.json"
+      files: "${{ inputs.files }} ${{ env.TESTS }}"
       dest: ${{inputs.folder}}/${{ steps.package-version.outputs.current-version }}.zip
       recursive: false
   - name: Upload S3
