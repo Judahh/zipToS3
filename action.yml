@@ -31,7 +31,7 @@ runs:
   steps:
   - name: GET VERSION
     id: package-version
-    uses: martinbeentjes/npm-get-version-action@master
+    uses: martinbeentjes/npm-get-version-action@main
   - name: 'Set Tests:'
     run: echo "TESTS=$(${{ inputs.addTests == 'true' }} && echo ${{ inputs.tests }} || echo '')" >> $GITHUB_ENV
     shell: bash
