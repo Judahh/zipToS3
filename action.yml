@@ -17,7 +17,7 @@ inputs:
   files:
     description: 'Files to zip'
     required: true
-    default: '.next/ next/ dist/ public/ node_modules/ package.json'
+    default: '.next/ next/ dist/ public/ node_modules/ script/ package.json'
   addTests:
     description: 'Add tests?'
     required: true
